@@ -259,9 +259,23 @@
 
       const newValue = parseInt(value);
 
+      /* [ADDITIONAL] Limits from data - didn't know how to do it in separate method, problems with default amount*/
+      let max = thisWidget.input.getAttribute('data-max');
+
+      let min = thisWidget.input.getAttribute('data-min');
+
+      if (!max || !min) {
+        max = settings.amountWidget.defaultMax;
+        min = settings.amountWidget.defaultMin;
+      }
+      console.log('Max:', max);
+      console.log('Min:', min);
+
+      /* [AADITIONAL END]
+
       /* TODO: Add validation */
-      if (newValue !== thisWidget.value && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
-        console.log('Validation works!')
+      if (newValue !== thisWidget.value && newValue >= min && newValue <= max) {
+        console.log('Validation works!');
         thisWidget.value = newValue;
         thisWidget.announce();
       }
