@@ -254,10 +254,10 @@
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
     }
 
-    validationMax(max) {
+    validationMax() {
       const thisWidget = this;
 
-      max = thisWidget.input.getAttribute('data-max');
+      let max = thisWidget.input.getAttribute('data-max');
 
       if (!max) {
         max = settings.amountWidget.defaultMax;
@@ -265,10 +265,10 @@
       return max;
     }
 
-    validationMin(min) {
+    validationMin() {
       const thisWidget = this;
 
-      min = thisWidget.input.getAttribute('data-min');
+      let min = thisWidget.input.getAttribute('data-min');
 
       if (!min) {
         min = settings.amountWidget.defaultMin;
