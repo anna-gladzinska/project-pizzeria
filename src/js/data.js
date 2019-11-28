@@ -6,7 +6,7 @@ dataSource.products = {
     name: 'Zio Stefano\'s Doughnut',
     price: 9,
     max: 12,
-    min: 2,
+    min: 1,
     description: 'Treat yourself with this soft, freshly baked cookie. The recipe has been handed down from generation to generation in our family and it has won us several first place prizes in local competitions.',
     images: [
       '<img class="active" src="images/doughnut.svg">',

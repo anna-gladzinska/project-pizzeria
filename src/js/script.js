@@ -254,27 +254,35 @@
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
     }
 
+    validationMax(max) {
+      const thisWidget = this;
+
+      max = thisWidget.input.getAttribute('data-max');
+
+      if (!max) {
+        max = settings.amountWidget.defaultMax;
+      }
+      return max;
+    }
+
+    validationMin(min) {
+      const thisWidget = this;
+
+      min = thisWidget.input.getAttribute('data-min');
+
+      if (!min) {
+        min = settings.amountWidget.defaultMin;
+      }
+      return min;
+    }
+
     setValue(value) {
       const thisWidget = this;
 
       const newValue = parseInt(value);
 
-      /* [ADDITIONAL] Limits from data - didn't know how to do it in separate method, problems with default amount*/
-      let max = thisWidget.input.getAttribute('data-max');
-
-      let min = thisWidget.input.getAttribute('data-min');
-
-      if (!max || !min) {
-        max = settings.amountWidget.defaultMax;
-        min = settings.amountWidget.defaultMin;
-      }
-      console.log('Max:', max);
-      console.log('Min:', min);
-
-      /* [AADITIONAL END]
-
-      /* TODO: Add validation */
-      if (newValue !== thisWidget.value && newValue >= min && newValue <= max) {
+      /* Validation */
+      if (newValue !== thisWidget.value && newValue >= thisWidget.validationMin() && newValue <= thisWidget.validationMax()) {
         console.log('Validation works!');
         thisWidget.value = newValue;
         thisWidget.announce();
