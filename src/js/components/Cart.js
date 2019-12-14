@@ -105,9 +105,13 @@ class Cart {
       thisCart.subtotalPrice = thisCart.subtotalPrice + thisCart.product.price;
       thisCart.totalNumber = thisCart.totalNumber + thisCart.product.amount;
     }
-
-    thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
-
+    if (thisCart.subtotalPrice > 0) {
+      thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
+      thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+    } else {
+      thisCart.deliveryFee = 0;
+      thisCart.totalPrice = 0;
+    }
     // console.log(thisCart.totalNumber, thisCart.subtotalPrice, this.totalPrice);
 
     for (let key of thisCart.renderTotalsKeys) {
