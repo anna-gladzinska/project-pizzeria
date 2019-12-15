@@ -22,14 +22,19 @@ class DatePicker extends BaseWidget {
     thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
 
     flatpickr(thisWidget.dom.input, {
-      defaultDate: utils.dateToStr(thisWidget.minDate),
-      minDate: utils.dateToStr(thisWidget.minDate),
-      maxDate: utils.dateToStr(thisWidget.maxDate),
+      defaultDate: thisWidget.minDate,
+      minDate: thisWidget.minDate,
+      maxDate: thisWidget.maxDate,
+      // dateFormat: 'Y-m-d',
       locale: {
         firstDayOfWeek: 1,
       },
-      onChange: function (dateStr) {
-        thisWidget.value = dateStr;
+      // Nie działa - zwraca zły format daty
+      // onChange: function (dateStr) {
+      //   thisWidget.value = dateStr;
+      // }
+      onChange: function () {
+        thisWidget.value = thisWidget.dom.input.value;
       }
     });
   }
