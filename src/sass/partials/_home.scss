@@ -188,6 +188,7 @@
   color: $color-light;
   z-index: 2;
   opacity: 0;
+  transition: 1s;
 
   i {
     line-height: 200px;

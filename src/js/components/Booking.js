@@ -216,7 +216,7 @@ class Booking {
       })
       .then(function (parsedResponse) {
         document.location.reload();
-        alert('Dziękujemy za rezerwacje! NaNaNaNa Batman!');
+        alert('Dziękujemy za rezerwacje!');
         console.log('Rezerwacja została dodana!', parsedResponse);
       });
   }
