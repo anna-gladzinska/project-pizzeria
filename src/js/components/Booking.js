@@ -92,12 +92,12 @@ class Booking {
         }
       }
     }
-    // console.log('thisBooking.booked', thisBooking.booked);
+    console.log('thisBooking.booked', thisBooking.booked);
 
     thisBooking.updateDOM();
   }
 
-  makeBooked(date, hour, duration, table) {
+  makeBooked(date, hour, duration, tables) {
     const thisBooking = this;
 
     if (typeof thisBooking.booked[date] == 'undefined') {
@@ -113,7 +113,9 @@ class Booking {
         thisBooking.booked[date][hourBlock] = [];
       }
 
-      thisBooking.booked[date][hourBlock].push(table);
+      for (let table of tables) {
+        thisBooking.booked[date][hourBlock].push(table);
+      }
     }
   }
 
@@ -160,9 +162,9 @@ class Booking {
     for (let table of thisBooking.dom.tables) {
       table.addEventListener('click', function () {
         if (table.classList.contains(classNames.booking.tableBooked) == false) {
-          for (let table of thisBooking.dom.tables) {
-            table.classList.remove(classNames.booking.select);
-          }
+          // for (let table of thisBooking.dom.tables) {
+          //   table.classList.remove(classNames.booking.select);
+          // }
           table.classList.add(classNames.booking.select);
         }
       });
@@ -177,7 +179,7 @@ class Booking {
     const payload = {
       date: thisBooking.date,
       hour: utils.numberToHour(thisBooking.hour),
-      table: 0,
+      table: [],
       duration: thisBooking.hoursAmount.value,
       ppl: thisBooking.peopleAmount.value,
       starters: [],
@@ -195,7 +197,8 @@ class Booking {
       if (table.classList.contains(classNames.booking.select)) {
         table.classList.remove(classNames.booking.select);
         thisBooking.tableId = table.getAttribute(settings.booking.tableIdAttribute);
-        payload.table = parseInt(thisBooking.tableId);
+        // payload.table = parseInt(thisBooking.tableId);
+        payload.table.push(parseInt(thisBooking.tableId));
       }
     }
 
@@ -213,6 +216,7 @@ class Booking {
       })
       .then(function (parsedResponse) {
         document.location.reload();
+        alert('Dziękujemy za rezerwacje! NaNaNaNa Batman!');
         console.log('Rezerwacja została dodana!', parsedResponse);
       });
   }

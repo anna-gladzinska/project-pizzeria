@@ -229,7 +229,9 @@
       "id": 1,
       "date": "2019-12-18",
       "hour": "20:30",
-      "table": 1,
+      "table": [
+        1
+      ],
       "repeat": false,
       "duration": 1,
       "ppl": 3,
@@ -239,7 +241,9 @@
       "id": 2,
       "date": "2019-01-01",
       "hour": "14:00",
-      "table": 2,
+      "table": [
+        2
+      ],
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
