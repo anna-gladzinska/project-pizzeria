@@ -9,6 +9,7 @@ const app = {
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    thisApp.homeLinks = document.querySelectorAll(select.nav.homeLinks);
 
     const idFromHash = window.location.hash.replace('#/', '');
     // console.log(idFromHash);
@@ -25,6 +26,22 @@ const app = {
     thisApp.activatePage(pageMatchingHash);
 
     for (let link of thisApp.navLinks) {
+      link.addEventListener('click', function (event) {
+        const clickedElement = this;
+        event.preventDefault();
+
+        /* get paage id form href attribute */
+        const id = clickedElement.getAttribute('href').replace('#', '');
+
+        /* run thisApp.activePage with that id */
+        thisApp.activatePage(id);
+
+        /* change URL hash */
+        window.location.hash = `#/${id}`;
+      });
+    }
+
+    for (let link of thisApp.homeLinks) {
       link.addEventListener('click', function (event) {
         const clickedElement = this;
         event.preventDefault();
@@ -57,6 +74,13 @@ const app = {
 
     /* add class "active" to matching links, remove from non-matching */
     for (let link of thisApp.navLinks) {
+      link.classList.toggle(
+        classNames.nav.active,
+        link.getAttribute('href') == `#${pageId}`
+      );
+    }
+
+    for (let link of thisApp.homeLinks) {
       link.classList.toggle(
         classNames.nav.active,
         link.getAttribute('href') == `#${pageId}`
